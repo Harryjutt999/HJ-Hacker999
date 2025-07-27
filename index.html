@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>HJ Hacker999 Tool</title>  
+  <style>  
+    body {  
+      margin: 0;  
+      font-family: 'Courier New', monospace;  
+      background: black;  
+      color: #00ff00;  
+      overflow: hidden;  
+    }  
+    canvas {  
+      position: fixed;  
+      top: 0;  
+      left: 0;  
+      z-index: -1;  
+    }  
+    .container {  
+      display: flex;  
+      flex-direction: column;  
+      align-items: center;  
+      justify-content: center;  
+      height: 100vh;  
+      text-align: center;  
+    }  
+    input {  
+      padding: 10px;  
+      font-size: 18px;  
+      background: black;  
+      color: #00ff00;  
+      border: 2px solid #00ff00;  
+      outline: none;  
+      margin-bottom: 15px;  
+    }  
+    button {  
+      padding: 10px 20px;  
+      font-size: 18px;  
+      background: #00ffcc;  
+      border: none;  
+      cursor: pointer;  
+      display: flex;  
+      align-items: center;  
+      gap: 10px;  
+    }  
+    .message {  
+      margin-top: 10px;  
+      font-size: 20px;  
+    }  
+    .top-buttons {  
+      position: absolute;  
+      top: 20px;  
+      display: flex;  
+      gap: 15px;  
+    }  
+    .top-buttons img {  
+      width: 20px;  
+      height: 20px;  
+    }  
+    h1.glow {  
+      animation: glow 2s ease-in-out infinite alternate;  
+    }  
+    @keyframes glow {  
+      from {  
+        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;  
+      }  
+      to {  
+        text-shadow: 0 0 20px #0f0, 0 0 30px #0f0;  
+      }  
+    }  
+  </style>  
+</head>  
+<body>  
+
+<!-- 🔊 Sound Effect -->
+<audio id="unlockSound" src="https://www.soundjay.com/button/sounds/button-16.mp3" preload="auto" muted></audio>
+
+<canvas id="matrix"></canvas>
+
+<!-- 🔐 Login Section -->
+<div class="container" id="loginContainer">  
+  <h2>Access Verification</h2>  
+  <input type="password" id="accessKey" placeholder="Enter Access Key..." />  
+  <button onclick="checkKey()">🔓 Unlock Tool</button>  
+  <div class="message" id="message"></div>  
+</div>  
+
+<!-- ✅ Dashboard -->
+<div class="container" id="dashboardContainer" style="display:none;">  
+  <div class="top-buttons">  
+    <button onclick="window.open('https://t.me/Harisjutt999', '_blank')">  
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" /> Telegram  
+    </button>  
+    <button onclick="window.open('https://wa.me/923035481601', '_blank')">  
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /> WhatsApp  
+    </button>  
+  </div>  
+  <h1 class="glow">✅ Welcome to the HJ Hacker999 Tool</h1>  
+  <p>Access Level: Admin</p>  
+  <p>Fetching target files...</p>  
+  <p>Uploading payload...</p>  
+  <p>System Breached ✅</p>  
+  <div style="margin-top: 30px;">  
+    <!-- 🔗 Your custom tool link -->
+    <button onclick="window.open('https://simsownerdetails.net.pk/', '_blank')">🛠️ Use Tool</button>  
+  </div>  
+</div>  
+
+<script>  
+  // 💻 Matrix Animation
+  const canvas = document.getElementById('matrix');  
+  const ctx = canvas.getContext('2d');  
+  canvas.height = window.innerHeight;  
+  canvas.width = window.innerWidth;  
+  const chars = '01';  
+  const fontSize = 14;  
+  const columns = canvas.width / fontSize;  
+  const drops = Array(Math.floor(columns)).fill(1);  
+
+  function drawMatrix() {  
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';  
+    ctx.fillRect(0, 0, canvas.width, canvas.height);  
+    ctx.fillStyle = '#0F0';  
+    ctx.font = fontSize + 'px monospace';  
+    for (let i = 0; i < drops.length; i++) {  
+      const text = chars.charAt(Math.floor(Math.random() * chars.length));  
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);  
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {  
+        drops[i] = 0;  
+      }  
+      drops[i]++;  
+    }  
+  }  
+  setInterval(drawMatrix, 33);  
+
+  // 🔐 Check Key & Play Sound
+  function checkKey() {  
+    const correctKey = "HJ Hacker999";  
+    const userKey = document.getElementById('accessKey').value;  
+    const message = document.getElementById('message');  
+    const sound = document.getElementById('unlockSound');  
+
+    if (userKey === correctKey) {  
+      document.getElementById('loginContainer').style.display = 'none';  
+      document.getElementById('dashboardContainer').style.display = 'flex';  
+
+      // 🔊 Play Sound
+      sound.muted = false;  
+      sound.volume = 1.0;  
+      sound.play().catch((e) => {
+        console.warn("Sound error:", e);
+      });
+
+    } else {  
+      message.style.color = 'red';  
+      message.innerText = '❌ Invalid Key';  
+    }  
+  }  
+</script>  
+
+</body>  
+</html>
